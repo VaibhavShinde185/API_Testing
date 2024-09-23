@@ -9,7 +9,7 @@ public class nonBDDStyleGET {
 
     public static void main(String[] args) {
         r.baseUri("https://api.zippopotam.us");
-//        r.useRelaxedHTTPSValidation("TLS");
+//        r.useRelaxedHTTPSValidation("TLS");   --Use this if facing SSL related issues
             testnonBDDStyle1();
             testnonBDDStyle2();
     }
@@ -21,7 +21,7 @@ public class nonBDDStyleGET {
     }
 
     private static void testnonBDDStyle2() {
-        r.basePath("in/400101");
+        r.basePath("in/400072");
         r.when().get();
         r.then().log().all().statusCode(200);
     }

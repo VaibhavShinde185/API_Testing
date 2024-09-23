@@ -15,7 +15,7 @@ public class  BDDStyleGET {
                     .baseUri("https://api.zippopotam.us")
                     .basePath("/in/400072")
                 .when().log().all().get()
-                .then().log().all().statusCode(201);
+                .then().log().all().statusCode(200);
     }
     public static void test2(){
         RestAssured
@@ -23,6 +23,6 @@ public class  BDDStyleGET {
                     .baseUri("https://api.zippopotam.us")
                     .basePath("/in/400101")
                 .when().log().all().get()
-                .then().log().all().statusCode(201);
+                .then().log().all().statusCode(200);
     }
 }
