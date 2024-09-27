@@ -8,6 +8,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class TestNG001 {
+    //the number of less annotation you use, you will have less confusion
+    //always try to keep them simple
 
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify that true == rtue")
