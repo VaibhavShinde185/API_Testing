@@ -24,6 +24,7 @@ public class TestCaseIntegration {
     String token;
     String bookingId;
 
+
     public String getToken() {
         String payload = "{\n" +
                 "                    \"username\" : \"admin\",\n" +
