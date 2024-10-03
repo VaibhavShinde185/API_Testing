@@ -9,12 +9,7 @@ import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
 
-public class gsonSerialize {
-    //  POJO - Plain Object Javascript Object
-        // we create a class for the payload which is called as POJO class
-
-    //  PUT request
-    //  use hardcoded token and bookingid
+public class gsonDeSerialize {
 
     RequestSpecification rS = RestAssured.given();
     Response r;
@@ -22,7 +17,7 @@ public class gsonSerialize {
 
     @Description("TC1 - Verify that create booking is working with valid payload")
     @Test
-    public void testPost(){
+    public void testPost() {
 
         booking bk = new booking();
         bk.setFirstname("James");
@@ -59,6 +54,10 @@ public class gsonSerialize {
 
         vR = r.then().statusCode(200).log().all();
 
-    }
+        // Parse - DeSerialize
 
+        bookingResponse bR = gson.fromJson(r.asString(), bookingResponse.class);
+        System.out.println(bR.getBookingid());
+
+    }
 }

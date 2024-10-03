@@ -6,8 +6,17 @@ public class booking {
     private String lastname;
     private Integer totalprice;
     private boolean depositpaid;
+    private bookingdates bkdt;
 
     private String additionalneeds;
+
+    public bookingdates getBkdt() {
+        return bkdt;
+    }
+
+    public void setBkdt(bookingdates bkdt) {
+        this.bkdt = bkdt;
+    }
 
     public String getFirstname() {
         return firstname;
