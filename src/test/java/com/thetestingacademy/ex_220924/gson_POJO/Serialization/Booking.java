@@ -1,22 +1,28 @@
 package com.thetestingacademy.ex_220924.gson_POJO.Serialization;
 
-public class booking {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
+public class Booking {
+
+    @SerializedName("firstname")
+    @Expose
     private String firstname;
+    @SerializedName("lastname")
+    @Expose
     private String lastname;
+    @SerializedName("totalprice")
+    @Expose
     private Integer totalprice;
-    private boolean depositpaid;
-    private bookingdates bkdt;
-
+    @SerializedName("depositpaid")
+    @Expose
+    private Boolean depositpaid;
+    @SerializedName("bookingdates")
+    @Expose
+    private Bookingdates bookingdates;
+    @SerializedName("additionalneeds")
+    @Expose
     private String additionalneeds;
-
-    public bookingdates getBkdt() {
-        return bkdt;
-    }
-
-    public void setBkdt(bookingdates bkdt) {
-        this.bkdt = bkdt;
-    }
 
     public String getFirstname() {
         return firstname;
@@ -42,12 +48,20 @@ public class booking {
         this.totalprice = totalprice;
     }
 
-    public boolean isDepositpaid() {
+    public Boolean getDepositpaid() {
         return depositpaid;
     }
 
-    public void setDepositpaid(boolean depositpaid) {
+    public void setDepositpaid(Boolean depositpaid) {
         this.depositpaid = depositpaid;
+    }
+
+    public Bookingdates getBookingdates() {
+        return bookingdates;
+    }
+
+    public void setBookingdates(Bookingdates bookingdates) {
+        this.bookingdates = bookingdates;
     }
 
     public String getAdditionalneeds() {
@@ -57,4 +71,5 @@ public class booking {
     public void setAdditionalneeds(String additionalneeds) {
         this.additionalneeds = additionalneeds;
     }
+
 }

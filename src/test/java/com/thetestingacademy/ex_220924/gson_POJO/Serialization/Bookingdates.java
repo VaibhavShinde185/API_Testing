@@ -1,9 +1,17 @@
 package com.thetestingacademy.ex_220924.gson_POJO.Serialization;
 
-public class bookingdates {
-    private String checkin;
-    private String checkout;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
+
+public class Bookingdates {
+
+    @SerializedName("checkin")
+    @Expose
+    private String checkin;
+    @SerializedName("checkout")
+    @Expose
+    private String checkout;
 
     public String getCheckin() {
         return checkin;
@@ -20,4 +28,5 @@ public class bookingdates {
     public void setCheckout(String checkout) {
         this.checkout = checkout;
     }
+
 }

@@ -8,6 +8,8 @@ import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
+import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 public class gsonDeSerialize {
 
@@ -19,27 +21,26 @@ public class gsonDeSerialize {
     @Test
     public void testPost() {
 
-        booking bk = new booking();
-        bk.setFirstname("James");
-        bk.setLastname("Brown");
-        bk.setTotalprice(9999);
-        bk.setDepositpaid(true);
+        Booking booking = new Booking();
+        booking.setFirstname("James");
+        booking.setLastname("Brown");
+        booking.setTotalprice(9999);
+        booking.setDepositpaid(true);
 
 
-        bookingdates bkdt = new bookingdates();
-        bk.setBkdt(bkdt);
-        bkdt.setCheckin("2024-10-01");
-        bkdt.setCheckout("2024-10-03");
+        Bookingdates bookingdates = new Bookingdates();
+        bookingdates.setCheckin("2024-10-01");
+        bookingdates.setCheckout("2024-10-03");
 
-        bk.setAdditionalneeds("Lunch");
+        booking.setBookingdates(bookingdates);
+        booking.setAdditionalneeds("Lunch");
 
-        System.out.println(bk);
+        System.out.println(booking);
         // We need to convert the Java object of POJO classes onto byteStream or JsonString so that we can transfer over HTTP - known as Serialization
 
         Gson gson = new Gson();
-        String payloadCreateBooking = gson.toJson(bk);
+        String payloadCreateBooking = gson.toJson(booking);
         System.out.println(payloadCreateBooking);
-
 
         String baseURL = "https://restful-booker.herokuapp.com/";
         String basePath = "/booking";
@@ -58,6 +59,9 @@ public class gsonDeSerialize {
 
         bookingResponse bR = gson.fromJson(r.asString(), bookingResponse.class);
         System.out.println(bR.getBookingid());
+        System.out.println(bR.getBooking().getFirstname());
+
+        assertThat(bR.getBooking().getFirstname()).isEqualTo("James").isNotEmpty().isNotNull();
 
     }
 }

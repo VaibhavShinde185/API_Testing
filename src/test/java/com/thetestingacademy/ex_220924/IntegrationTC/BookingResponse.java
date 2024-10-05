@@ -1,6 +1,8 @@
-package com.thetestingacademy.ex_220924.gson_POJO.Serialization;
+package com.thetestingacademy.ex_220924.IntegrationTC;
 
-public class bookingResponse {
+import com.thetestingacademy.ex_220924.gson_POJO.Serialization.Booking;
+
+public class BookingResponse {
     private Integer bookingid;
     private Booking booking;
 
@@ -19,5 +21,4 @@ public class bookingResponse {
     public void setBooking(Booking booking) {
         this.booking = booking;
     }
-
 }
