@@ -11,7 +11,7 @@
 
 
         <classes>
-            <class name="com.thetestingacademy.ex_2120924.TestNG.TestNG005_TestCasesGrouping">
+            <class name="com.thetestingacademy.ex_210924.TestNG.TestNG005_TestCasesGrouping">
                 <methods>
                     <include name="test_get"/>
                 </methods>
