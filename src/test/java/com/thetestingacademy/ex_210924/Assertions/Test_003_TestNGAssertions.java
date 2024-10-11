@@ -1,5 +1,6 @@
 package com.thetestingacademy.ex_210924.Assertions;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -8,7 +9,7 @@ public class Test_003_TestNGAssertions {
 //@Test
 //public void hardAssert(){
 //    Assert.assertTrue(false);
-//    // The above statement throw an assertion error  and stop execution
+//    // The above statement throw an assertion error  and stop execution. It would not print below line.
 //    System.out.println("This line would not be executed");
 // }
 
