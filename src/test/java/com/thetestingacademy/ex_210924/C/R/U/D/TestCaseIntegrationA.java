@@ -19,13 +19,13 @@ public class TestCaseIntegrationA {
                "    \"username\" : \"admin\",\n" +
                "    \"password\" : \"password123\"\n" +
                "}";
-       RequestSpecification r = RestAssured.given();
-       r.baseUri("https://restful-booker.herokuapp.com");
-       r.basePath("/auth");
-       r.contentType(ContentType.JSON).log().all();
-       r.body(createTokenPayload);
+       requestSpecification = RestAssured.given();
+       requestSpecification.baseUri("https://restful-booker.herokuapp.com");
+       requestSpecification.basePath("/auth");
+       requestSpecification.contentType(ContentType.JSON).log().all();
+       requestSpecification.body(createTokenPayload);
 
-       Response response = r.when().post();
+       Response response = requestSpecification.when().post();
        ValidatableResponse validatableResponse = response.then();
        validatableResponse.statusCode(200);
 
@@ -93,7 +93,7 @@ public class TestCaseIntegrationA {
 //    }
 
 
-    @Test
+   @Test
    public void updateBooking(){
        token = createToken();
        bookingID =  createBooking();

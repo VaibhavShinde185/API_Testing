@@ -16,9 +16,9 @@ public class TestCaseIntegration {
     // Delete the ID
     // Verify it doesn't exist GET Request
 
-    RequestSpecification requestSpecification;
-    ValidatableResponse validatableResponse;
-    Response response;
+    RequestSpecification rS;
+    ValidatableResponse vR;
+    Response r;
     String token;
     String bookingId;
 
@@ -29,18 +29,18 @@ public class TestCaseIntegration {
                 "                    \"password\" : \"password123\"\n" +
                 "                }";
         // Given - Request Spec
-        RequestSpecification r = RestAssured.given();
-        r.baseUri("https://restful-booker.herokuapp.com");
-        r.basePath("/auth");
-        r.contentType(ContentType.JSON).log().all();
-        r.body(payload);
+        rS = RestAssured.given();
+        rS.baseUri("https://restful-booker.herokuapp.com");
+        rS.basePath("/auth");
+        rS.contentType(ContentType.JSON).log().all();
+        rS.body(payload);
 
-        Response response = r.when().post();
+        r = rS.when().post();
 
-        ValidatableResponse validatableResponse = response.then();
-        validatableResponse.statusCode(200);
+        vR = r.then();
+        vR.statusCode(200);
 
-        token = response.jsonPath().getString("token") ;
+        token = r.jsonPath().getString("token") ;
         System.out.println(token);
         return token;
     }
@@ -58,23 +58,23 @@ public class TestCaseIntegration {
                 "    \"additionalneeds\" : \"Lunch\"\n" +
                 "}";
 
-        requestSpecification = RestAssured.given();
-        requestSpecification.baseUri("https://restful-booker.herokuapp.com/");
-        requestSpecification.basePath("/booking");
-        requestSpecification.contentType(ContentType.JSON);
-        requestSpecification.body(payload_POST).log().all();
+        rS = RestAssured.given();
+        rS.baseUri("https://restful-booker.herokuapp.com/");
+        rS.basePath("/booking");
+        rS.contentType(ContentType.JSON);
+        rS.body(payload_POST).log().all();
 
-        Response response = requestSpecification.when().post();
+        r = rS.when().post();
 
-        validatableResponse = response.then().log().all();
-        validatableResponse.statusCode(200);
+        vR = r.then().log().all();
+        vR.statusCode(200);
 
-        bookingId = response.jsonPath().getString("bookingid");
+        bookingId = r.jsonPath().getString("bookingid");
         System.out.println(bookingId);
         return bookingId;
     }
 
-    @Test
+    @Test (priority = 1)
     public void test_update_request_put() {
         token = getToken();
         bookingId= getBookingID();
@@ -89,29 +89,41 @@ public class TestCaseIntegration {
                 "    },\n" +
                 "    \"additionalneeds\" : \"Lunch\"\n" +
                 "}";
-        requestSpecification = RestAssured.given();
-        requestSpecification.baseUri("https://restful-booker.herokuapp.com/");
-        requestSpecification.basePath("/booking/"+bookingId);
-        requestSpecification.contentType(ContentType.JSON);
-        requestSpecification.cookie("token",token);
-        requestSpecification.body(payloadPUT).log().all();
 
-        Response response = requestSpecification.when().put();
+        rS = RestAssured.given();
+        rS.baseUri("https://restful-booker.herokuapp.com/");
+        rS.basePath("/booking/"+bookingId);
+        rS.contentType(ContentType.JSON);
+        rS.cookie("token",token);
+        rS.body(payloadPUT).log().all();
 
-        validatableResponse = response.then().log().all();
-        validatableResponse.statusCode(200);
+        r = rS.when().put();
+
+        vR = r.then().log().all();
+        vR.statusCode(200);
     }
 
-//    @Test
-//    public void test_update_request_get() {
-//        System.out.println(bookingId);
-//    }
-//
-//    @Test
-//    public void test_delete_booking() {
-//        System.out.println(bookingId);
-//        System.out.println(token);
-//    }
+    @Test (priority = 2)
+    public void test_get_bookingid() {
+        System.out.println("Booking id of the above request is " + bookingId);
+        System.out.println();
+    }
+
+    @Test (priority = 3)
+    public void test_delete_booking() {
+        rS = RestAssured.given();
+        rS.baseUri("https://restful-booker.herokuapp.com/");
+        rS.basePath("/booking/" + bookingId);
+        rS.contentType(ContentType.JSON);
+        rS.cookie("token", token).log().all();
+
+        r = rS.when().delete();
+
+        vR = r.then().statusCode(201);
+
+        System.out.println(bookingId);
+        System.out.println(token);
+    }
 //
 //    @Test
 //    public void test_after_delete_request_get() {
