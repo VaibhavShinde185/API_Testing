@@ -10,9 +10,9 @@ public class TestNG002_passValuesToOtherTC {
     Integer bookingID;
 
     @BeforeTest
-    public String getToken() {
+    public void getToken() {
         token = "123";
-        return token;
+     //   return token;
     }
 
     @BeforeTest

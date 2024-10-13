@@ -4,12 +4,12 @@ import org.testng.annotations.Test;
 
 public class TestNG004_priority {
 
-    @Test (priority = 2)
+    @Test (priority = 1)
     public void getToken(){
         System.out.println("1");
     }
 
-    @Test (priority = 1)
+    @Test (priority = 2)
     public void getBookingID(){
         System.out.println("2");
     }

@@ -12,9 +12,9 @@
 
         <classes>
             <class name="com.thetestingacademy.ex_210924.TestNG.TestNG005_TestCasesGrouping">
-                <methods>
-                    <include name="test_get"/>
-                </methods>
+<!--                <methods>-->
+<!--                    <include name="test_get"/>-->
+<!--                </methods>-->
             </class>
         </classes>
     </test>

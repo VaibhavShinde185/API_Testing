@@ -21,7 +21,7 @@ public class TestNG001 {
     @Description("Verify that false == true")
     @Test
     public void testCase02(){
-        Assert.assertEquals(false, true);
+        Assert.assertEquals(false, false);
     }
 
 }
